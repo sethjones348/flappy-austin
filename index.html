@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Austin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-screen">
+            <div id="score">0</div>
+            <div id="game-message">Press Space to Start</div>
+            <div id="austin" class="austin-sprite"></div>
+            <!-- Fart sound sources -->
+            <audio id="fart-sound-1" preload="auto">
+                <source src="sounds/fart1.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="fart-sound-2" preload="auto">
+                <source src="sounds/fart2.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="fart-sound-3" preload="auto">
+                <source src="sounds/fart3.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="fart-sound-4" preload="auto">
+                <source src="sounds/fart4.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="fart-sound-5" preload="auto">
+                <source src="sounds/fart5.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+    <!-- Sound controls -->
+    <div id="sound-controls">
+        <button id="toggle-music" title="Toggle Music">🎵</button>
+        <button id="toggle-sound-effects" title="Toggle Sound Effects">🔊</button>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html> 
