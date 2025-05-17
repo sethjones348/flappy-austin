@@ -4,6 +4,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDisplay = document.getElementById("score");
   const gameMessage = document.getElementById("game-message");
 
+  // Ad elements
+  const gameOverAdContainer = document.getElementById("ad-container-gameover");
+  const continueAfterAdBtn = document.getElementById("continue-after-ad");
+
+  // Add ad related event listeners
+  continueAfterAdBtn.addEventListener("click", () => {
+    gameOverAdContainer.style.display = "none";
+    restartGame();
+  });
+
+  // Ad display variables
+  let adFrequency = 2; // Show ad every X game overs
+  let gameOverCount = 0;
+
   // Sound elements
   const fartSounds = [
     document.getElementById("fart-sound-1"),
@@ -454,14 +468,36 @@ document.addEventListener("DOMContentLoaded", () => {
   // End the game
   function gameEnd() {
     gameOver = true;
+
+    // Increment game over count
+    gameOverCount++;
+
+    // Show standard game over message
     gameMessage.textContent = `Game Over! Score: ${score}. Press Space to Restart`;
     gameMessage.style.display = "block";
+
+    // Show ad overlay based on frequency
+    if (gameOverCount % adFrequency === 0) {
+      // Refresh ads (if needed)
+      try {
+        if (window.adsbygoogle && window.adsbygoogle.push) {
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+      } catch (e) {
+        console.error("Error refreshing ads:", e);
+      }
+
+      // Show the ad overlay
+      setTimeout(() => {
+        gameOverAdContainer.style.display = "block";
+      }, 1000); // Small delay before showing ad
+    }
 
     // Don't stop the music when the game ends - let it continue playing
   }
 
-  // Start or restart the game
-  function startGame() {
+  // Function to actually restart the game (after ad if shown)
+  function restartGame() {
     // Ensure we have a clean audio context
     if (musicEnabled) {
       // Make sure any previous music is stopped
@@ -514,10 +550,37 @@ document.addEventListener("DOMContentLoaded", () => {
     lastPipeTime = Date.now();
   }
 
+  // Start or restart the game (check if ad should be shown first)
+  function startGame() {
+    // If game is over, check whether to show ad or restart directly
+    if (gameOver) {
+      if (
+        gameOverCount % adFrequency === 0 &&
+        gameOverAdContainer.style.display !== "block"
+      ) {
+        // Show ad overlay
+        gameOverAdContainer.style.display = "block";
+      } else if (gameOverAdContainer.style.display === "block") {
+        // Ad is showing, wait for user to click continue
+        return;
+      } else {
+        // No ad to show, restart directly
+        restartGame();
+      }
+    } else {
+      // First game start
+      restartGame();
+    }
+  }
+
   // Handle keyboard input
   document.addEventListener("keydown", (e) => {
     if (e.code === "Space") {
       if (!gameStarted || gameOver) {
+        // Don't start game if ad is showing
+        if (gameOverAdContainer.style.display === "block") {
+          return;
+        }
         startGame();
       } else {
         velocity = jump;
@@ -533,6 +596,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle touch for mobile
   gameScreen.addEventListener("touchstart", (e) => {
+    // Don't handle touch if ad is showing
+    if (gameOverAdContainer.style.display === "block") {
+      return;
+    }
+
     if (!gameStarted || gameOver) {
       startGame();
     } else {

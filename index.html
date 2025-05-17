@@ -5,36 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flappy Austin</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google AdSense Verification Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3333169251061455" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="game-container">
-        <div id="game-screen">
-            <div id="score">0</div>
-            <div id="game-message">Press Space to Start</div>
-            <div id="austin" class="austin-sprite"></div>
-            <!-- Fart sound sources -->
-            <audio id="fart-sound-1" preload="auto">
-                <source src="sounds/fart1.mp3" type="audio/mpeg">
-            </audio>
-            <audio id="fart-sound-2" preload="auto">
-                <source src="sounds/fart2.mp3" type="audio/mpeg">
-            </audio>
-            <audio id="fart-sound-3" preload="auto">
-                <source src="sounds/fart3.mp3" type="audio/mpeg">
-            </audio>
-            <audio id="fart-sound-4" preload="auto">
-                <source src="sounds/fart4.mp3" type="audio/mpeg">
-            </audio>
-            <audio id="fart-sound-5" preload="auto">
-                <source src="sounds/fart5.mp3" type="audio/mpeg">
-            </audio>
+    <div class="page-wrapper">
+        <!-- Top banner ad -->
+        <div id="ad-container-top">
+            <!-- Google AdSense Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3333169251061455"
+                 data-ad-slot="REPLACE_WITH_YOUR_AD_SLOT_ID_3"
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <div id="game-container">
+            <div id="game-screen">
+                <div id="score">0</div>
+                <div id="game-message">Press Space to Start</div>
+                <div id="austin" class="austin-sprite"></div>
+                <!-- Fart sound sources -->
+                <audio id="fart-sound-1" preload="auto">
+                    <source src="sounds/fart1.mp3" type="audio/mpeg">
+                </audio>
+                <audio id="fart-sound-2" preload="auto">
+                    <source src="sounds/fart2.mp3" type="audio/mpeg">
+                </audio>
+                <audio id="fart-sound-3" preload="auto">
+                    <source src="sounds/fart3.mp3" type="audio/mpeg">
+                </audio>
+                <audio id="fart-sound-4" preload="auto">
+                    <source src="sounds/fart4.mp3" type="audio/mpeg">
+                </audio>
+                <audio id="fart-sound-5" preload="auto">
+                    <source src="sounds/fart5.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+        
+        <!-- Ad container below game -->
+        <div id="ad-container-bottom">
+            <!-- Google AdSense Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3333169251061455"
+                 data-ad-slot="REPLACE_WITH_YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
     </div>
+    
     <!-- Sound controls -->
     <div id="sound-controls">
         <button id="toggle-music" title="Toggle Music">🎵</button>
         <button id="toggle-sound-effects" title="Toggle Sound Effects">🔊</button>
     </div>
+    
+    <!-- Game over ad container (will be shown when game ends) -->
+    <div id="ad-container-gameover" style="display:none;">
+        <div class="ad-overlay-bg">
+            <div class="ad-content">
+                <h2>Game Over!</h2>
+                <p>Continue after this ad...</p>
+                <!-- Google AdSense Ad Unit -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3333169251061455"
+                     data-ad-slot="REPLACE_WITH_YOUR_AD_SLOT_ID_2"
+                     data-ad-format="rectangle"
+                     data-full-width-responsive="false"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <button id="continue-after-ad">Continue</button>
+            </div>
+        </div>
+    </div>
+    
     <script src="game.js"></script>
 </body>
 </html> 
